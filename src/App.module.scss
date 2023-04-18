@@ -1,3 +1,4 @@
+
 .logo {
   width: 150px;
 }
@@ -12,16 +13,19 @@
   height: 80px;
 }
 
-.contents {
-  margin: 0 auto;
-  max-width: 1440px;
-  box-sizing: border-box;
-  padding: 0 70px;
-}
-
 .headerContents {
   display: flex;
   align-items: center;
   height: 100%;
   justify-content: space-between;
+}
+
+.headerButtonArea {
+  display: flex;
+  gap: 40px;
+}
+
+.headerButton {
+  color: white;
+  text-decoration: none;
 }

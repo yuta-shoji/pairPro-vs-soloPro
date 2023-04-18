@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import styles from './App.module.scss'
 import pokemonLogo from './images/pokemon-logo.png'
-import classNames from "classnames";
+import classNames from 'classnames'
 
 function App() {
     return (

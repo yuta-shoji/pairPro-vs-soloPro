@@ -5,6 +5,7 @@ import {Route, Routes} from 'react-router-dom'
 import HomeScreen from './home/HomeScreen'
 import MyCardScreen from './myCard/MyCardScreen'
 import Contents from './Contents'
+import {PUBLIC_URL} from './constants'
 
 export default function App() {
     return (
@@ -22,8 +23,8 @@ export default function App() {
             </header>
 
             <Routes>
-                <Route path="/" element={<HomeScreen/>}/>
-                <Route path="/my-card" element={<MyCardScreen/>}/>
+                <Route path={`${PUBLIC_URL}/`} element={<HomeScreen/>}/>
+                <Route path={`${PUBLIC_URL}/my-card`} element={<MyCardScreen/>}/>
             </Routes>
         </>
     )

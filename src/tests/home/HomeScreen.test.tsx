@@ -13,7 +13,7 @@ describe('', () => {
         await renderApplication('/')
 
 
-        expect(screen.getByText("￥260"))
+        expect(screen.getByText("¥260"))
         expect(screen.getByAltText('拡張パック 20th Anniversary 10枚入り')).toBeInTheDocument()
     })
 
@@ -21,7 +21,7 @@ describe('', () => {
         await renderApplication('/')
 
 
-        expect(screen.getByText("￥180"))
+        expect(screen.getByText("¥180"))
         expect(screen.getByAltText('neo 金,銀,新世界へ•••')).toBeInTheDocument()
     })
 
@@ -29,7 +29,7 @@ describe('', () => {
         await renderApplication('/')
 
 
-        expect(screen.getByText("￥290"))
+        expect(screen.getByText("¥290"))
         expect(screen.getByAltText('さいはての攻防 拡張パック')).toBeInTheDocument()
     })
 
@@ -37,7 +37,7 @@ describe('', () => {
         await renderApplication('/')
 
 
-        expect(screen.getByText("￥310"))
+        expect(screen.getByText("¥310"))
         expect(screen.getByAltText('DP 時空の創造')).toBeInTheDocument()
     })
 
@@ -45,7 +45,7 @@ describe('', () => {
         await renderApplication('/')
 
 
-        expect(screen.getByText("￥170"))
+        expect(screen.getByText("¥170"))
         expect(screen.getByAltText('ブラックコレクション拡張パック')).toBeInTheDocument()
     })
 
@@ -53,7 +53,7 @@ describe('', () => {
         await renderApplication('/')
 
 
-        expect(screen.getByText("￥410"))
+        expect(screen.getByText("¥410"))
         expect(screen.getByAltText('ソード&シールド Vmaxライジング 強化拡張パック')).toBeInTheDocument()
     })
 })

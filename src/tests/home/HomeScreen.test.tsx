@@ -1,5 +1,7 @@
 import {screen} from '@testing-library/react'
 import renderApplication from '../RenderApplication'
+import userEvent from "@testing-library/user-event";
+import resolveAwaitingPromises from "../../PromiseProcessing";
 
 describe('', () => {
     test('購入画面のページタイトルが表示されている', async () => {
@@ -55,5 +57,17 @@ describe('', () => {
 
         expect(screen.getByText("¥410"))
         expect(screen.getByAltText('ソード&シールド Vmaxライジング 強化拡張パック')).toBeInTheDocument()
+    })
+
+    test('購入ボタンを押したら、開封画面に遷移し、Buy New Packの文字が見える', async () => {
+        await renderApplication('/')
+        const buyButton = screen.getByText('¥260')
+
+
+        userEvent.click(buyButton)
+        await resolveAwaitingPromises()
+
+
+        expect(screen.getByText('Buy New Pack')).toBeInTheDocument()
     })
 })

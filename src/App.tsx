@@ -5,6 +5,7 @@ import {Link, Route, Routes} from 'react-router-dom'
 import HomeScreen from './home/HomeScreen'
 import MyCardScreen from './myCard/MyCardScreen'
 import Contents from './Contents'
+import OpenScreen from "./Open/OpenScreen";
 
 export default function App() {
     return (
@@ -24,6 +25,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<HomeScreen/>}/>
                 <Route path="/my-card" element={<MyCardScreen/>}/>
+                <Route path="/open" element={<OpenScreen/>}/>
             </Routes>
         </>
     )

@@ -7,6 +7,7 @@ import pack4 from '../images/pack_ver4.jpg'
 import pack5 from '../images/pack_ver5.jpeg'
 import pack6 from '../images/pack_ver6.png'
 import Pack from '../models/Pack'
+import PackScreen from "./PackScreen";
 
 export default function HomeScreen() {
     const packs: Pack[] = [
@@ -22,14 +23,9 @@ export default function HomeScreen() {
         <Contents>
             <h1 className={styles.title}>Pokemon Vending Machine</h1>
             <div className={styles.packContainer}>
-                {packs.map(pack => (
-                    <div className={styles.pack} key={pack.title}>
-                        <img className={styles.image} src={pack.image} alt={pack.title}/>
-                        <div className={styles.price}>
-                            <span>{pack.price}</span>
-                        </div>
-                    </div>
-                ))}
+                {packs.map(pack =>
+                    <PackScreen pack={pack} />
+                )}
             </div>
         </Contents>
     )

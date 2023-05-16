@@ -5,8 +5,13 @@ import {Link, Route, Routes} from 'react-router-dom'
 import HomeScreen from './home/HomeScreen'
 import MyCardScreen from './myCard/MyCardScreen'
 import Contents from './Contents'
+import MyCardManager from './MyCardManager'
 
-export default function App() {
+export interface AppProps {
+    myCardManager: MyCardManager
+}
+
+export default function App(props: AppProps) {
     return (
         <>
             <header className={styles.header}>
@@ -23,7 +28,7 @@ export default function App() {
 
             <Routes>
                 <Route path="/" element={<HomeScreen/>}/>
-                <Route path="/my-card" element={<MyCardScreen/>}/>
+                <Route path="/my-card" element={<MyCardScreen myCardManager={props.myCardManager}/>}/>
             </Routes>
         </>
     )

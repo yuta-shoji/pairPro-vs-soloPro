@@ -1,18 +1,22 @@
 import {screen} from '@testing-library/react'
 import renderApplication from '../RenderApplication'
+import {AppProps} from '../../App'
+import AppPropsBuilder from '../../AppPropsBuilder'
 import userEvent from "@testing-library/user-event";
 import resolveAwaitingPromises from "../../PromiseProcessing";
 
 describe('', () => {
+    const appProps: AppProps = (new AppPropsBuilder()).build()
+
     test('購入画面のページタイトルが表示されている', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText('Pokemon Vending Machine')).toBeInTheDocument()
     })
 
     test('「拡張パック 20th Anniversary 10枚入り」パックの画像と値段がある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText("¥260"))
@@ -20,7 +24,7 @@ describe('', () => {
     })
 
     test('「neo 金,銀,新世界へ•••」パックの画像と値段がある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText("¥180"))
@@ -28,7 +32,7 @@ describe('', () => {
     })
 
     test('「さいはての攻防 拡張パック」パックの画像と値段がある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText("¥290"))
@@ -36,7 +40,7 @@ describe('', () => {
     })
 
     test('「DP 時空の創造」パックの画像と値段がある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText("¥310"))
@@ -44,7 +48,7 @@ describe('', () => {
     })
 
     test('「ブラックコレクション拡張パック」パックの画像と値段がある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText("¥170"))
@@ -52,7 +56,7 @@ describe('', () => {
     })
 
     test('「ソード&シールド Vmaxライジング 強化拡張パック」パックの画像と値段がある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         expect(screen.getByText("¥410"))
@@ -60,7 +64,7 @@ describe('', () => {
     })
 
     test('購入ボタンを押したら、開封画面に遷移し、Buy New Packの文字が見える', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
         const buyButton = screen.getByText('¥260')
 
 

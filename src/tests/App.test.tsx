@@ -1,10 +1,14 @@
 import React from 'react'
 import {screen} from '@testing-library/react'
 import renderApplication from './RenderApplication'
+import {AppProps} from '../App'
+import AppPropsBuilder from '../AppPropsBuilder'
 
 describe('アプリ全体', () => {
+    let appProps: AppProps = (new AppPropsBuilder()).build()
+
     test('HeaderにポケモンのLogoが見える', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         const logo = screen.getByAltText('pokemon-logo')
@@ -12,7 +16,7 @@ describe('アプリ全体', () => {
     })
 
     test('Headerにホーム画面に遷移するボタンがある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         const homeButton = screen.getByText('ホーム') as HTMLAnchorElement
@@ -21,7 +25,7 @@ describe('アプリ全体', () => {
     })
 
     test('Headerにマイカード画面に遷移するボタンがある', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
 
 
         const myCardButton = screen.getByText('マイカードリスト') as HTMLAnchorElement
@@ -30,12 +34,12 @@ describe('アプリ全体', () => {
     })
 
     test('ルートパスがホーム画面になっている', async () => {
-        await renderApplication('/')
+        await renderApplication('/', appProps)
         expect(screen.getByText('Pokemon Vending Machine')).toBeInTheDocument()
     })
 
     test('/my-cardがマイカード画面になっている', async () => {
-        await renderApplication('/my-card')
+        await renderApplication('/my-card', appProps)
         const countOfTitleAndHeaderButton = 2
         expect(screen.getAllByText('マイカードリスト').length).toEqual(countOfTitleAndHeaderButton)
     })

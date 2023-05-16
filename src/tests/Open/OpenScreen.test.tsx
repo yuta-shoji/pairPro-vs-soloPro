@@ -2,10 +2,14 @@ import {screen} from '@testing-library/react'
 import renderApplication from '../RenderApplication'
 import userEvent from "@testing-library/user-event";
 import resolveAwaitingPromises from "../../PromiseProcessing";
+import {AppProps} from "../../App";
+import AppPropsBuilder from "../../AppPropsBuilder";
 
 describe('開封画面', () => {
+    const appProps: AppProps = (new AppPropsBuilder()).build()
+
     test('開封画面を開いた時、初期状態で「？」が5こ見える', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
 
 
         const questionMarks = screen.getAllByText('?')
@@ -13,7 +17,7 @@ describe('開封画面', () => {
     })
 
     test('一つ目の「?」を押した時、「bulbasaur」の文字が見える', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
         const questionMarks = screen.getAllByText('?')
 
 
@@ -28,7 +32,7 @@ describe('開封画面', () => {
     })
 
     test('2つ目の「?」を押した時、「ivysaur」の文字が見える', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
         const questionMarks = screen.getAllByText('?')
 
 
@@ -43,7 +47,7 @@ describe('開封画面', () => {
     })
 
     test('3つ目の「?」を押した時、「venusaur」の文字が見える', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
         const questionMarks = screen.getAllByText('?')
 
 
@@ -58,7 +62,7 @@ describe('開封画面', () => {
     })
 
     test('4つ目の「?」を押した時、「charmander」の文字が見える', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
         const questionMarks = screen.getAllByText('?')
 
 
@@ -73,7 +77,7 @@ describe('開封画面', () => {
     })
 
     test('5つ目の「?」を押した時、「charmeleon」の文字が見える', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
         const questionMarks = screen.getAllByText('?')
 
 
@@ -88,7 +92,7 @@ describe('開封画面', () => {
     })
 
     test('Buy New Packボタンを押すと、購入画面に遷移する', async () => {
-        await renderApplication('/open')
+        await renderApplication('/open', appProps)
 
 
         expect(screen.queryByText('¥260')).toBeNull()

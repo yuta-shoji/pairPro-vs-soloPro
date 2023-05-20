@@ -7,12 +7,18 @@ import MyCardScreen from './myCard/MyCardScreen'
 import Contents from './Contents'
 import UnpackScreen from "./Open/UnpackScreen";
 import MyCardManager from './MyCardManager'
+import {PokemonRepo} from "./Repo/NetwoekPokemonRepo";
+import RandomNumberProvider from "./RandomNumberProvider";
 
 export interface AppProps {
-    myCardManager: MyCardManager
+    myCardManager: MyCardManager,
+    pokemonRepo: PokemonRepo,
+    randomNumberProvider: RandomNumberProvider
 }
 
 export default function App(props: AppProps) {
+    const {myCardManager, pokemonRepo, randomNumberProvider} = props
+
     return (
         <>
             <header className={styles.header}>
@@ -29,9 +35,15 @@ export default function App(props: AppProps) {
 
             <Routes>
                 <Route path="/" element={<HomeScreen/>}/>
-                <Route path="/my-card" element={<MyCardScreen myCardManager={props.myCardManager}/>}/>
-                <Route path="/open" element={<UnpackScreen/>}/>
-                <Route path="/my-card" element={<MyCardScreen myCardManager={props.myCardManager}/>}/>
+                <Route path="/my-card"
+                       element={<MyCardScreen myCardManager={myCardManager}/>}
+                />
+                <Route path="/open"
+                       element={<UnpackScreen myCardManager={myCardManager}
+                                              pokemonRepo={pokemonRepo}
+                                              randomNumberProvider={randomNumberProvider}
+                       />}
+                />
             </Routes>
         </>
     )

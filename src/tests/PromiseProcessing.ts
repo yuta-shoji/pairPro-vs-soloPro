@@ -8,5 +8,6 @@ export default async function resolveAwaitingPromises() {
 }
 
 export const asyncClick = (target: HTMLElement) => act(async () => {
-    await fireEvent.click(target);
+    fireEvent.click(target);
+    await resolveAwaitingPromises()
 })

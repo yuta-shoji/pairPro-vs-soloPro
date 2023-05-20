@@ -8,7 +8,10 @@ export default async function renderApplication(url: string, appProps: AppProps)
         window.history.pushState({}, '', url)
         render(
             <BrowserRouter>
-                <App myCardManager={appProps.myCardManager}/>
+                <App myCardManager={appProps.myCardManager}
+                     pokemonRepo={appProps.pokemonRepo}
+                     randomNumberProvider={appProps.randomNumberProvider}
+                />
             </BrowserRouter>
         )
     })

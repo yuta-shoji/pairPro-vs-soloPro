@@ -1,8 +1,10 @@
 import styles from './MyCardScreen.module.scss'
 import Contents from '../Contents'
-import {AppProps} from '../App'
+import MyCardManager from "../MyCardManager";
 
-export default function MyCardScreen(props: AppProps) {
+export default function MyCardScreen(
+    props: {myCardManager: MyCardManager}
+) {
     return (
         <Contents>
             <h1 className={styles.title}>マイカードリスト</h1>

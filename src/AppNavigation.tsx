@@ -14,7 +14,10 @@ export default function AppNavigation() {
 
     return (
         <BrowserRouter basename={PUBLIC_URL}>
-            <App myCardManager={appProps.myCardManager}/>
+            <App myCardManager={appProps.myCardManager}
+                 pokemonRepo={appProps.pokemonRepo}
+                 randomNumberProvider={appProps.randomNumberProvider}
+            />
         </BrowserRouter>
     )
 }

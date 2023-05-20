@@ -2,8 +2,7 @@ import {screen} from '@testing-library/react'
 import renderApplication from '../RenderApplication'
 import {AppProps} from '../../App'
 import AppPropsBuilder from '../../AppPropsBuilder'
-import userEvent from "@testing-library/user-event";
-import resolveAwaitingPromises from "../../PromiseProcessing";
+import {asyncClick} from "../PromiseProcessing";
 
 describe('', () => {
     const appProps: AppProps = (new AppPropsBuilder()).build()
@@ -68,8 +67,7 @@ describe('', () => {
         const buyButton = screen.getByText('¥260')
 
 
-        userEvent.click(buyButton)
-        await resolveAwaitingPromises()
+        await asyncClick(buyButton)
 
 
         expect(screen.getByText('Buy New Pack')).toBeInTheDocument()

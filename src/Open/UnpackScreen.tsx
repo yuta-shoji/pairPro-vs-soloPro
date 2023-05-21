@@ -12,11 +12,13 @@ export default function UnpackScreen(props: AppProps) {
         (async () => {
             const cards = []
             for (let num of [...Array(5)]) {
-                const pokemon = await pokemonRepo.getPokemon(randomNumberProvider.random())
+                const random = randomNumberProvider.random()
+                const pokemon = await pokemonRepo.getPokemon(random)
                 cards.push({
                     id: pokemon.id,
                     name: pokemon.name,
-                    type: pokemon.types.map(typeSlot => typeSlot.type.name)
+                    type: pokemon.types.map(typeSlot => typeSlot.type.name),
+                    imageUrl: pokemon.sprites.other["official-artwork"].front_default
                 })
             }
             setCards(cards)

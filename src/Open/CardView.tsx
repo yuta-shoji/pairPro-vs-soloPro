@@ -2,7 +2,7 @@ import {useState} from "react";
 import Card from "../models/Card";
 
 export default function CardView(props: { card: Card }) {
-    const { card } = props
+    const {card} = props
     const [onClick, setOnClick] = useState(false)
 
     return (
@@ -12,9 +12,10 @@ export default function CardView(props: { card: Card }) {
             </div>
             {onClick &&
                 <>
-                   <div>{card.id}</div>
-                   <div>{card.name}</div>
-                   <div>{card.type.join(',')}</div>
+                    <div>{card.id}</div>
+                    <div>{card.name}</div>
+                    <div>{card.type.join(',')}</div>
+                    <img src={card.imageUrl} alt="pokemonImage"/>
                 </>
             }
         </>

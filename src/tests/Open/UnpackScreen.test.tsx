@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import {AppProps} from "../../App";
 import AppPropsBuilder from "../../AppPropsBuilder";
 import {StubSpyPokemonRepo} from "../Repo/StubSpyPokemonRepo";
-import resolveAwaitingPromises, {asyncClick} from "../PromiseProcessing";
+import resolveAwaitingPromises from "../PromiseProcessing";
 import {StubRandomNumberProvider} from "../StubRandomNumberProvider";
 
 describe('開封画面', () => {
@@ -36,11 +36,11 @@ describe('開封画面', () => {
         expect(screen.getByText('¥260')).toBeInTheDocument()
     })
 
-    test('開封画面を開いた時、初期状態で「？」が5こ見える', async () => {
+    test('開封画面を開いた時、初期状態でカードが5枚見える', async () => {
         await renderApplication('/open', appProps)
 
 
-        const questionMarks = screen.getAllByText('?')
+        const questionMarks = screen.getAllByTitle('cardFront')
         expect(questionMarks.length).toEqual(5)
     })
 
@@ -77,59 +77,30 @@ describe('開封画面', () => {
     test('pokemonRepoが返す値を表示する', async () => {
         setStubSpyPokemonRepo()
         await renderApplication('/open', appProps)
-        const questionMarks = screen.getAllByText('?')
-
-
-        expect(screen.queryByText(6)).toBeNull()
-        expect(screen.queryByText('charizard')).toBeNull()
-        expect(screen.queryByText('fire,flying')).toBeNull()
-
-        expect(screen.queryByText(23)).toBeNull()
-        expect(screen.queryByText('ekans')).toBeNull()
-        expect(screen.queryByText('poison')).toBeNull()
-
-        expect(screen.queryByText(86)).toBeNull()
-        expect(screen.queryByText('seel')).toBeNull()
-        expect(screen.queryByText('water')).toBeNull()
-
-        expect(screen.queryByText(161)).toBeNull()
-        expect(screen.queryByText('sentret')).toBeNull()
-        expect(screen.queryByText('normal')).toBeNull()
-
-        expect(screen.queryByText(377)).toBeNull()
-        expect(screen.queryByText('regirock')).toBeNull()
-        expect(screen.queryByText('rock')).toBeNull()
-
-
-        await asyncClick(questionMarks[0])
-        await asyncClick(questionMarks[1])
-        await asyncClick(questionMarks[2])
-        await asyncClick(questionMarks[3])
-        await asyncClick(questionMarks[4])
 
 
         const imageUrls = screen.queryAllByAltText('pokemonImage') as HTMLImageElement[]
-        expect(screen.getByText(6)).toBeInTheDocument()
+        expect(screen.getByText('#6')).toBeInTheDocument()
         expect(screen.getByText('charizard')).toBeInTheDocument()
         expect(screen.getByText('fire,flying')).toBeInTheDocument()
         assertImageUrlExists(imageUrls[0], 'https://charizard.png')
 
-        expect(screen.getByText(23)).toBeInTheDocument()
+        expect(screen.getByText('#23')).toBeInTheDocument()
         expect(screen.getByText('ekans')).toBeInTheDocument()
         expect(screen.getByText('poison')).toBeInTheDocument()
         assertImageUrlExists(imageUrls[1], 'https://ekans.png')
 
-        expect(screen.getByText(86)).toBeInTheDocument()
+        expect(screen.getByText('#86')).toBeInTheDocument()
         expect(screen.getByText('seel')).toBeInTheDocument()
         expect(screen.getByText('water')).toBeInTheDocument()
         assertImageUrlExists(imageUrls[2], 'https://seel.png')
 
-        expect(screen.getByText(161)).toBeInTheDocument()
+        expect(screen.getByText('#161')).toBeInTheDocument()
         expect(screen.getByText('sentret')).toBeInTheDocument()
         expect(screen.getByText('normal')).toBeInTheDocument()
         assertImageUrlExists(imageUrls[3], 'https://sentret.png')
 
-        expect(screen.getByText(377)).toBeInTheDocument()
+        expect(screen.getByText('#377')).toBeInTheDocument()
         expect(screen.getByText('regirock')).toBeInTheDocument()
         expect(screen.getByText('rock')).toBeInTheDocument()
         assertImageUrlExists(imageUrls[4], 'https://regirock.png')

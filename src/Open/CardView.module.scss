@@ -1,0 +1,68 @@
+.card {
+  width: 217px;
+  height: 304px;
+  position: relative;
+  cursor: pointer;
+}
+
+.cardFrontContainer {
+  width: 217px;
+  height: 304px;
+  transition: all 1.0s;
+  position: absolute;
+  backface-visibility: hidden;
+  background: #F2F4F7;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  transform: rotateY(-180deg);
+}
+
+.cardBackContainer {
+  transition: all 1.0s;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.cardBackImage {
+  width: 217px;
+  border-radius: 20px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.turnOverCardFront {
+  transform: rotateY(0deg);
+}
+
+.turnOverCardBack {
+  transform: rotateY(180deg);
+}
+
+.pokemonImage {
+  width: 161px;
+  padding: 0 28px 0 28px;
+}
+
+.cardId {
+  color: #041B3E;
+  font-family: "Noto Sans";
+  font-size: 24px;
+  padding-left: 12px;
+  padding-top: 12px;
+  height: 28px;
+}
+
+.cardInfo {
+  color: #041B3E;
+  font-family: "Noto Sans";
+  font-size: 24px;
+  text-align: center;
+  height: 24px;
+}
+
+.cardName {
+  padding-bottom: 16px;
+}
+
+.cardType {
+  padding-bottom: 24px;
+}

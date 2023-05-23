@@ -6,7 +6,7 @@ export default function PackScreen(props: {
     pack: Pack
 }) {
     return (
-        <div className={styles.pack} key={props.pack.title}>
+        <div key={props.pack.title}>
             <img className={styles.image} src={props.pack.image} alt={props.pack.title}/>
             <Link to='/open'>
                 <div className={styles.price}>

@@ -3,6 +3,7 @@ import Card from "../models/Card";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {AppProps} from "../App";
+import styles from "./UnpackScreen.module.scss"
 
 export default function UnpackScreen(props: AppProps) {
     const {pokemonRepo, randomNumberProvider} = props
@@ -27,9 +28,15 @@ export default function UnpackScreen(props: AppProps) {
 
     return (
         <>
-            {cards.map((card, index) => <CardView key={index} card={card}/>)}
+            <div className={styles.cardContainer}>
+                {cards.map((card, index) => <CardView key={index} card={card}/>)}
+            </div>
 
-            <Link to="/">Buy New Pack</Link>
+            <Link to="/">
+                <div className={styles.buyNewPack}>
+                    <span>Buy New Pack</span>
+                </div>
+            </Link>
         </>
     )
 }

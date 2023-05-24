@@ -1,4 +1,4 @@
-import {Http} from "../../Networking/NetworkHttp";
+import {Http} from "../../pokemonVendingMachine/Networking/NetworkHttp";
 
 export class StubSpyHttp implements Http {
     get_returnValue: Promise<object> = Promise.resolve({})

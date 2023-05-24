@@ -6,18 +6,22 @@ import AppPropsBuilder from "../../AppPropsBuilder";
 import {StubSpyPokemonRepo} from "../Repo/StubSpyPokemonRepo";
 import resolveAwaitingPromises from "../PromiseProcessing";
 import {StubRandomNumberProvider} from "../StubRandomNumberProvider";
+import StubMyCardManager from "../StubMyCardManager";
 
 describe('開封画面', () => {
     let appProps: AppProps
     let stubSpyPokemonRepo: StubSpyPokemonRepo
     let stubRandomNumberProvider: StubRandomNumberProvider
+    let stubMyCardManager: StubMyCardManager
 
     beforeEach(() => {
         stubSpyPokemonRepo = new StubSpyPokemonRepo()
         stubRandomNumberProvider = new StubRandomNumberProvider()
+        stubMyCardManager = new StubMyCardManager()
         appProps = new AppPropsBuilder()
             .withPokemonRepo(stubSpyPokemonRepo)
             .withRandomNumberProvider(stubRandomNumberProvider)
+            .withMyCardManager(stubMyCardManager)
             .build()
     })
 
@@ -104,6 +108,45 @@ describe('開封画面', () => {
         expect(screen.getByText('regirock')).toBeInTheDocument()
         expect(screen.getByText('rock')).toBeInTheDocument()
         assertImageUrlExists(imageUrls[4], 'https://regirock.png')
+    })
+
+    test('getしたカードをmyCardManagerに渡している', async () => {
+        setStubSpyPokemonRepo()
+        await renderApplication('/open', appProps)
+
+
+        const myCards = stubMyCardManager.set_argument_cards
+        expect(myCards.length).toEqual(5)
+        expect(myCards[0]).toEqual({
+            id: 6,
+            name: 'charizard',
+            types: ['fire', 'flying'],
+            imageUrl: "https://charizard.png",
+        })
+        expect(myCards[1]).toEqual({
+            id: 23,
+            name: 'ekans',
+            types: ['poison'],
+            imageUrl: "https://ekans.png",
+        })
+        expect(myCards[2]).toEqual({
+            id: 86,
+            name: 'seel',
+            types: ['water'],
+            imageUrl: "https://seel.png",
+        })
+        expect(myCards[3]).toEqual({
+            id: 161,
+            name: 'sentret',
+            types: ['normal'],
+            imageUrl: "https://sentret.png",
+        })
+        expect(myCards[4]).toEqual({
+            id: 377,
+            name: 'regirock',
+            types: ['rock'],
+            imageUrl: "https://regirock.png",
+        })
     })
 
     function setStubSpyPokemonRepo() {

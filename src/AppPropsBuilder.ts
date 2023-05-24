@@ -1,17 +1,20 @@
 import MyCardManager, {DefaultMyCardManager} from './MyCardManager'
 import {AppProps} from './App'
-import {NetworkPokemonRepo, PokemonRepo} from "./Repo/NetwoekPokemonRepo";
-import {Http, NetworkHttp} from "./Networking/NetworkHttp";
 import RandomNumberProvider, {DefaultRandomNumberProvider} from "./RandomNumberProvider";
+import CardListProvider, {MyCardListProvider} from './MyCardListProvider';
+import {Http, NetworkHttp} from "./pokemonVendingMachine/Networking/NetworkHttp";
+import {NetworkPokemonRepo, PokemonRepo} from "./pokemonVendingMachine/Repo/NetwoekPokemonRepo";
 
 export default class AppPropsBuilder {
+    private readonly myCardListProvider: CardListProvider
     private myCardManager: MyCardManager
     private readonly http: Http
     private pokemonRepo: PokemonRepo
     private randomNumberProvider: RandomNumberProvider
 
     constructor() {
-        this.myCardManager = new DefaultMyCardManager()
+        this.myCardListProvider = new MyCardListProvider()
+        this.myCardManager = new DefaultMyCardManager(this.myCardListProvider)
         this.http = new NetworkHttp()
         this.pokemonRepo = new NetworkPokemonRepo(this.http)
         this.randomNumberProvider = new DefaultRandomNumberProvider()

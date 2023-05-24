@@ -1,14 +1,14 @@
 export default interface Card {
     name: string
     id: number
-    type: string[]
+    types: string[]
     imageUrl: string
 }
 
 export class CardBuilder {
     private name: string = ""
     private id: number = 0
-    private type: string[] = []
+    private types: string[] = []
     private imageUrl: string = ""
 
     withName(newValue: string): CardBuilder {
@@ -21,8 +21,8 @@ export class CardBuilder {
         return this
     }
 
-    withType(newValue: string[]): CardBuilder {
-        this.type = newValue
+    withTypes(newValue: string[]): CardBuilder {
+        this.types = newValue
         return this
     }
 
@@ -35,7 +35,7 @@ export class CardBuilder {
         return {
             name: this.name,
             id: this.id,
-            type: this.type,
+            types: this.types,
             imageUrl: this.imageUrl
         }
     }

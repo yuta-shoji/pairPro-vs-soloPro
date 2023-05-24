@@ -1,17 +1,17 @@
 import {render, screen} from '@testing-library/react'
-import CardView from "../../Open/CardView";
-import Card from "../../models/Card";
 import {asyncClick} from "../PromiseProcessing";
+import Card from "../../pokemonVendingMachine/models/Card";
+import RotateCardView from "../../pokemonVendingMachine/card/RotateCardView";
 
-describe('CardView', () => {
+describe('RotateCardView', () => {
     test('カードの裏面をクリックするとカードが裏返り、ポケモンの情報が表示される', async () => {
         const card: Card = {
             id: 1,
             name: "bulbasaur",
-            type: ["grass"],
+            types: ["grass"],
             imageUrl: "https://hoge.png"
         }
-        render(<CardView card={card}/>)
+        render(<RotateCardView card={card}/>)
 
 
         expect(screen.getByTitle('cardFront')).not.toHaveClass('turnOverCardFront')
@@ -30,8 +30,8 @@ describe('CardView', () => {
     })
 
     test('typeが複数あるポケモンの場合は全てのタイプをカンマ区切りで表示する', async () => {
-        const card: Card = {id: 1, name: "bulbasaur", type: ["grass", "water"], imageUrl: ""}
-        render(<CardView card={card}/>)
+        const card: Card = {id: 1, name: "bulbasaur", types: ["grass", "water"], imageUrl: ""}
+        render(<RotateCardView card={card}/>)
 
 
         expect(screen.getByText('grass,water')).toBeInTheDocument()

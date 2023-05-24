@@ -1,5 +1,5 @@
-import {NetworkPokemonRepo, PokemonRepo} from "../../Repo/NetwoekPokemonRepo";
-import {StubSpyHttp} from "../Http/StubSpyHttp";
+import {StubSpyHttp} from "../Networking/StubSpyHttp";
+import {NetworkPokemonRepo, PokemonRepo} from "../../pokemonVendingMachine/Repo/NetwoekPokemonRepo";
 
 describe('NetworkPokemonRepoの', () => {
     let stubSpyNetworkHttp: StubSpyHttp

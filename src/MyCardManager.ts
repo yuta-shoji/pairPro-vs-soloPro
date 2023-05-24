@@ -1,4 +1,5 @@
-import Card from "./models/Card";
+import MyCardListProvider from "./MyCardListProvider";
+import Card from "./pokemonVendingMachine/models/Card";
 
 export default interface MyCardManager {
     getAll(): Card[]
@@ -6,10 +7,17 @@ export default interface MyCardManager {
 }
 
 export class DefaultMyCardManager implements MyCardManager {
+    private readonly myCardListProvider: MyCardListProvider
+
+    constructor(myCardList: MyCardListProvider) {
+        this.myCardListProvider = myCardList
+    }
+
     getAll(): Card[] {
-        return []
+        return this.myCardListProvider.cards
     }
 
     set(card: Card): void {
+        this.myCardListProvider.cards.push(card)
     }
 }

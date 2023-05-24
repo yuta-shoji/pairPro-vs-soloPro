@@ -1,14 +1,14 @@
 import React from 'react'
 import styles from './App.module.scss'
-import pokemonLogo from './images/pokemon-logo.png'
+import pokemonLogo from './pokemonVendingMachine/images/pokemon-logo.png'
 import {Link, Route, Routes} from 'react-router-dom'
-import HomeScreen from './home/HomeScreen'
-import MyCardScreen from './myCard/MyCardScreen'
 import Contents from './Contents'
-import UnpackScreen from "./Open/UnpackScreen";
 import MyCardManager from './MyCardManager'
-import {PokemonRepo} from "./Repo/NetwoekPokemonRepo";
 import RandomNumberProvider from "./RandomNumberProvider";
+import {PokemonRepo} from "./pokemonVendingMachine/Repo/NetwoekPokemonRepo";
+import HomeScreen from "./pokemonVendingMachine/home/HomeScreen";
+import MyCardScreen from "./pokemonVendingMachine/myCardScreen/MyCardScreen";
+import UnpackScreen from "./pokemonVendingMachine/UnpackScreen/UnpackScreen";
 
 export interface AppProps {
     myCardManager: MyCardManager,

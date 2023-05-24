@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Http, NetworkHttp} from "../../Networking/NetworkHttp";
+import {Http, NetworkHttp} from "../../pokemonVendingMachine/Networking/NetworkHttp";
 
 describe('NetworkHttp', () => {
     describe('get requests', () => {

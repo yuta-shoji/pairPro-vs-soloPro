@@ -16,6 +16,10 @@ export interface AppProps {
     randomNumberProvider: RandomNumberProvider
 }
 
+function CardDetail(props: { myCardManager: MyCardManager, randomNumberProvider: RandomNumberProvider, pokemonRepo: PokemonRepo }) {
+    return null;
+}
+
 export default function App(props: AppProps) {
     const {myCardManager, pokemonRepo, randomNumberProvider} = props
 
@@ -42,6 +46,12 @@ export default function App(props: AppProps) {
                        element={<UnpackScreen myCardManager={myCardManager}
                                               pokemonRepo={pokemonRepo}
                                               randomNumberProvider={randomNumberProvider}
+                       />}
+                />
+                <Route path="/card-detail/:id"
+                       element={<CardDetail  myCardManager={myCardManager}
+                                             pokemonRepo={pokemonRepo}
+                                             randomNumberProvider={randomNumberProvider}
                        />}
                 />
             </Routes>

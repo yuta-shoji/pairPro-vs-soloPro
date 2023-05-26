@@ -25,9 +25,9 @@ describe('カードリスト画面', () => {
 
     test('過去にGetしたポケモンのID、名前、タイプ、画像が一覧で表示されている', async () => {
         stubMyCardManager.getAll_returnValue = [
-            {id: 1, name: "name1", types: ["type1"], imageUrl: "https://image1.png"},
-            {id: 2, name: "name2", types: ["type2"], imageUrl: "https://image2.png"},
-            {id: 3, name: "name3", types: ["type3", "type4"], imageUrl: "https://image3.png"},
+            {id: 1, name: "name1", types: ["type1"], imageUrl: "https://image1.png" ,weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 2, name: "name2", types: ["type2"], imageUrl: "https://image2.png" ,weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 3, name: "name3", types: ["type3", "type4"], imageUrl: "https://image3.png" ,weight: 0, height: 0, genus: "", flavor_text: ""},
         ]
         await renderApplication('my-card', appProps)
 
@@ -51,11 +51,25 @@ describe('カードリスト画面', () => {
 
     test('保有するカードの枚数が表示される', async () => {
         stubMyCardManager.getAll_returnValue = [
-            {id: 6, name: 'charizard', types: ['fire'], imageUrl: "https://charizard.png",},
-            {id: 23, name: 'ekans', types: ['poison'], imageUrl: "https://ekans.png",},
-            {id: 86, name: 'seel', types: ['water'], imageUrl: "https://seel.png",},
-            {id: 161, name: 'sentret', types: ['normal'], imageUrl: "https://sentret.png",},
-            {id: 377, name: 'regirock', types: ['rock'], imageUrl: "https://regirock.png",},
+            {id: 6, name: 'charizard', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 23, name: 'ekans', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 86, name: 'seel', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+        ]
+
+        expect(screen.queryByText('全3枚')).toBeNull()
+        await renderApplication('/my-card', appProps)
+
+
+        expect(screen.getByText('全3枚')).toBeInTheDocument()
+    })
+
+    test('再度開いても保有するカードの枚数が正しく表示される', async () => {
+        stubMyCardManager.getAll_returnValue = [
+            {id: 6, name: 'charizard', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 23, name: 'ekans', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 86, name: 'seel', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 161, name: 'sentret', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
+            {id: 377, name: 'regirock', types: [], imageUrl: "", weight: 0, height: 0, genus: "", flavor_text: ""},
         ]
 
         expect(screen.queryByText('全5枚')).toBeNull()
@@ -63,25 +77,6 @@ describe('カードリスト画面', () => {
 
 
         expect(screen.getByText('全5枚')).toBeInTheDocument()
-    })
-
-    test('再度開いても保有するカードの枚数が正しく表示される', async () => {
-        stubMyCardManager.getAll_returnValue = [
-            {id: 6, name: 'charizard', types: ['fire'], imageUrl: "https://charizard.png"},
-            {id: 23, name: 'ekans', types: ['poison'], imageUrl: "https://ekans.png"},
-            {id: 86, name: 'seel', types: ['water'], imageUrl: "https://seel.png"},
-            {id: 161, name: 'sentret', types: ['normal'], imageUrl: "https://sentret.png"},
-            {id: 377, name: 'regirock', types: ['rock'], imageUrl: "https://regirock.png"},
-            {id: 400, name: 'regirock', types: ['rock'], imageUrl: "https://regirock.png"},
-            {id: 500, name: 'regirock', types: ['rock'], imageUrl: "https://regirock.png"},
-            {id: 600, name: 'regirock', types: ['rock'], imageUrl: "https://regirock.png"},
-        ]
-
-        expect(screen.queryByText('全8枚')).toBeNull()
-        await renderApplication('/my-card', appProps)
-
-
-        expect(screen.getByText('全8枚')).toBeInTheDocument()
     })
 
     function assertImageUrlExists(element: HTMLImageElement, src: string) {

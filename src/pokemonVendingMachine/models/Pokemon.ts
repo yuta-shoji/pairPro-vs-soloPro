@@ -3,6 +3,8 @@ export default interface Pokemon {
     name: string
     types: TypeSlot[]
     sprites: Sprites
+    weight: number
+    height: number
 }
 
 export interface TypeSlot {

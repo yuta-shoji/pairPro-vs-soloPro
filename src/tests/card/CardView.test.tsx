@@ -9,7 +9,11 @@ describe('RotateCardView', () => {
             id: 1,
             name: "bulbasaur",
             types: ["grass"],
-            imageUrl: "https://hoge.png"
+            imageUrl: "https://hoge.png",
+            weight: 0,
+            height: 0,
+            genus: "",
+            flavor_text: ""
         }
         render(<RotateCardView card={card}/>)
 
@@ -30,7 +34,16 @@ describe('RotateCardView', () => {
     })
 
     test('typeが複数あるポケモンの場合は全てのタイプをカンマ区切りで表示する', async () => {
-        const card: Card = {id: 1, name: "bulbasaur", types: ["grass", "water"], imageUrl: ""}
+        const card: Card = {
+            id: 1,
+            name: "bulbasaur",
+            types: ["grass", "water"],
+            imageUrl: "",
+            weight: 0,
+            height: 0,
+            genus: "",
+            flavor_text: "",
+        }
         render(<RotateCardView card={card}/>)
 
 

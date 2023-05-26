@@ -1,5 +1,5 @@
 # Pokemon Vending Machine
-![logo](./src/images/pokemon-logo.png)
+![logo](./src/pokemonVendingMachine/images/pokemon-logo.png)
 
 ## Install
 
